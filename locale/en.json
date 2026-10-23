@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Excel reconcile",
+    "description": "按主键对齐两份 Excel/CSV 表，按容差逐字段比较，输出 Markdown 报告、JSON 结果与差异工作簿。"
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "path": "docs/assets/dsh-excel-reconcile-hero.png",
+    "kind": "hero",
+    "alt": "dsh-excel-reconcile terminal output",
+    "caption": "Real dsh-excel-reconcile checker output."
+  },
+  {
+    "path": "docs/assets/dsh-excel-reconcile-demo.gif",
+    "kind": "demo",
+    "alt": "Animated dsh-excel-reconcile terminal session",
+    "caption": "The same run, assembled line by line."
+  }
+]

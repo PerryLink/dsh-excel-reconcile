@@ -1,0 +1,23 @@
+# 表格对账 · 规则库
+#
+# 本包的对账规则是**每份对账配置**（主键、字段、容差），随请求传入，
+# 不是随包发布的固定规则集。因此这里没有可执行规则。
+#
+# 保留该文件的原因与 ingest 包相同：本族的工装脚本按 rules/<pack>.yaml 定位。
+#
+# 规则数据与代码分离：替换本文件即可切换规则集版本，无需改动 TypeScript。
+#
+# 条款引用纪律（由 shared/ruleset.ts 强制校验）：
+#   - 每条规则必须写全 document / number / clause / excerpt / kind / source，
+#     且 excerpt 必须是逐字摘录，不得改写。
+#   - kind: direct                       条款直接规定了所检查的要求
+#   - kind: derived-from-principle       条款未直接规定，仅能由原则性条款推论（severity 最多 warn）
+#   - kind: institutional-configuration 阈值出自本机构配置（severity 最多 info）
+#
+# TODO: 替换下列示例规则。每条规则的 excerpt 必须是 rules/evidence/ 里逐字出现的引文；
+#       取不到原文就如实写"本次未取得"并标 derived-from-principle。
+
+plugin: dsh-excel-reconcile
+version: "2026.1"
+
+rules: []
