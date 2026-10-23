@@ -9,7 +9,8 @@
 import { describe, expect, it } from 'vitest'
 import { readWorkbook } from 'dsh-table-ingest/api'
 import { writeWorkbook } from '../src/xlsx-write.ts'
-import { reconcile, parseMinor, formatMinor, normaliseKey, ReconcileError } from '../src/model.ts'
+import { reconcile, parseMinor, formatMinor, normaliseKey, ReconcileError, type ReconcileConfig } from '../src/model.ts'
+import { parseYaml } from '../src/shared/yaml.ts'
 import { buildWorkbook, DIFF_COLUMNS, renderMarkdown } from '../src/report.ts'
 
 /** Build a one-sheet workbook and read it back as a table. */
@@ -196,5 +197,37 @@ describe('markdown report', () => {
     expect(markdown).toContain('不判断哪一侧正确')
     expect(markdown).toContain('容差的取值是本工具配置，不是法规要求')
     expect(markdown).toContain('HT-002')
+  })
+})
+
+describe('yaml reader regression', () => {
+  it('reads an inline map in a sequence as a mapping, not a string', () => {
+    // A published 0.1.0 shipped an older shared/yaml.ts: `- {a: 金额, kind: money}`
+    // was read as the literal string. The config then had no usable `compare`
+    // entries, so value differences were silently *not reported* — the worst
+    // failure mode for a reconciliation tool.
+    const parsed = parseYaml('compare:\n  - {a: 金额, kind: money}\n  - {a: 客户, kind: text}\n') as {
+      compare: Array<Record<string, string>>
+    }
+    expect(parsed.compare).toHaveLength(2)
+    expect(parsed.compare[0]?.a).toBe('金额')
+    expect(parsed.compare[0]?.kind).toBe('money')
+  })
+
+  it('reports a value difference when the config is written inline', () => {
+    const a = tableOf('应收', ['合同号', '金额'], [['HT-001', '12000.00']]).table
+    const b = tableOf('对账单', ['合同号', '金额'], [['HT-001', '8000.00']]).table
+    const config = parseYaml(
+      'a:\n  table: 应收\n  keys: [合同号]\nb:\n  table: 对账单\n  keys: [合同号]\n' +
+      'compare:\n  - {a: 金额, kind: money}\n',
+    ) as ReconcileConfig
+    const result = reconcile({ 应收: a, 对账单: b }, config)
+    // The engine classifies a money comparison as `text-diff` when both sides are
+    // present; what matters here is that the difference is reported at all, which
+    // it was not in 0.1.0.
+    const diff = result.findings.find((finding) => finding.field === '金额')
+    expect(diff).toBeDefined()
+    expect(diff?.a).toBe('12000.00')
+    expect(diff?.b).toBe('8000.00')
   })
 })

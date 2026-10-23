@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.1.1
+
+**Fixes a silent-failure bug in 0.1.0.** The bundled `shared/yaml.ts` predated the
+flow-collection fix, so an inline map in `compare:` — the natural way to write it —
+
+```yaml
+compare:
+  - {a: 金额, kind: money}
+```
+
+was read as the literal string `{a: 金额, kind: money}`. The config then had no
+usable comparison entries and **value differences were not reported at all**: a
+reconciliation over two invoices differing by 500.00 returned only the missing-key
+findings and looked clean.
+
+This is the worst failure mode for a reconciliation tool — silence reads as
+agreement. The reader is re-synced, a regression test now asserts that an inline
+map is read as a mapping and that the difference is reported, and the bundle that
+embeds this package is rebuilt.
+
+No API change. Anyone who reconciled with an inline `compare` list should re-run:
+differences they were not shown may exist.
+
+
 ## 0.1.0
 
 First release.
