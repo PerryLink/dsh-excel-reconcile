@@ -1,6 +1,6 @@
 {
   "name": "dsh-excel-reconcile",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "按主键对齐两份 Excel/CSV 表，按容差逐字段比较，输出 Markdown 报告、JSON 结果与差异工作簿。",
   "type": "module",
   "main": "lib/index.mjs",
@@ -92,6 +92,6 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "dsh-table-ingest": "^0.2.0"
+    "dsh-table-ingest": "^0.2.1"
   }
 }

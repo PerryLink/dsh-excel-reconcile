@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- Require `dsh-table-ingest` `^0.2.1`, which adds the ZIP entry-count, per-entry and cumulative output budgets requested in the dshopen review. No rule or report change.
+
 ## 0.1.1
 
 **Fixes a silent-failure bug in 0.1.0.** The bundled `shared/yaml.ts` predated the
