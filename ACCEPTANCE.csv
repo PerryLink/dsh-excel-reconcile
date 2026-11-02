@@ -1,0 +1,3 @@
+req_id,metric,threshold,actual,script,evidence_sha256,pass,source,counted
+CHK-EXCEL-RECONCILE-A01,vitest 真实运行,25/25,25,npx vitest run,697ae7e4f65479548fc2baf055642c48780a2516a38d7387048c46350f235202,true,public/synthetic,false
+CHK-EXCEL-RECONCILE-A02,失败用例数,0,0,npx vitest run,697ae7e4f65479548fc2baf055642c48780a2516a38d7387048c46350f235202,true,public/synthetic,false
