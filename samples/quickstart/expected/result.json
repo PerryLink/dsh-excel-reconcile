@@ -1,0 +1,15 @@
+{
+  "tool": "excel_reconcile",
+  "summary": {
+    "rowsA": 3,
+    "rowsB": 3,
+    "matched": 2,
+    "onlyA": 1,
+    "onlyB": 1,
+    "duplicateKeys": 0,
+    "errors": 1,
+    "warnings": 2,
+    "infos": 0
+  },
+  "findingCount": 3
+}
