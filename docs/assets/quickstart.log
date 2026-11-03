@@ -1,0 +1,3 @@
+$ node samples/quickstart/run.mjs
+excel_reconcile: 3 finding(s) — 1 error, 2 warn, 0 info
+rows: A=3 B=3, matched 2, only A=1, only B=1, duplicate keys=0
