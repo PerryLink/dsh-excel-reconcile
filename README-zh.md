@@ -1,6 +1,6 @@
 # dsh-excel-reconcile — 两份表格逐字段对账
 
-## 快速试跑（1 分钟）
+### 快速试跑（1 分钟）
 
 ```bash
 node samples/quickstart/run.mjs --check
