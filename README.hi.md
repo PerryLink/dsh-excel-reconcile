@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-excel-reconcile-flow-dark.svg">
-  <img src="docs/assets/dsh-excel-reconcile-flow-light.svg" width="100%" alt="dsh-excel-reconcile डेटा प्रवाह: fileA + fileB → excel_reconcile टूल → findings[] → markdown / resultJson / reconcile-diff.xlsx; कॉन्फ़िगरेशन config.yaml से आता है (join, compare[], duplicates, scale)">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-excel-reconcile-hero-en-dark.webp">
+  <img src="docs/assets/dsh-excel-reconcile-hero-en-light.webp" width="100%" alt="dsh-excel-reconcile बैनर: दाईं ओर दो पन्नों का खुला फैलाव — A पक्ष की प्राप्य बही और B पक्ष का विवरण पत्र अनुबंध कुंजी पर पंक्ति-दर-पंक्ति संरेखित, बीच की पट्टी में हर पंक्ति के लिए एक निर्णय (मेल / Δ 100.00 / केवल A / केवल B), और नीचे नमूने के तीन findings (1 error · 2 warn) जो markdown, resultJson और reconcile-diff.xlsx तक जाते हैं; आँकड़े samples/quickstart नमूने से">
 </picture>
 
 # dsh-excel-reconcile
@@ -37,6 +37,11 @@ dsh plugin --profile <name> add dsh-excel-reconcile
 `dsh-excel-reconcile` दो तालिकाओं (`.xlsx` / `.xlsm` / `.csv` / `.docx` तालिकाएँ) को कॉन्फ़िगर की गई कुंजियों पर मिलाता है, फ़ील्ड-दर-फ़ील्ड तुलना करता है, और तीन चीज़ें बनाता है: लोगों के पढ़ने के लिए Markdown रिपोर्ट, प्रोग्राम के लिए JSON परिणाम, और समीक्षक के छानने के लिए अंतर वर्कबुक (पाँच शीट)। हर कॉल ठीक एक मिलान करती है: कुंजियाँ, तुलना के फ़ील्ड, जॉइन मोड और सहनशीलता अनुरोध के साथ YAML/JSON कॉन्फ़िगरेशन में आते हैं; पैकेज कोई निश्चित नियम-सेट नहीं लाता।
 
 यह मिलान करता है, फ़ैसला नहीं: अंतर का मतलब है कि दोनों पक्ष सहमत नहीं हैं, यह नहीं कि कोई एक ग़लत है। धनराशि पूर्णांक लघु इकाइयों (BigInt) में तुलना होती है, फ़्लोटिंग पॉइंट में कभी नहीं, इसलिए `12.3` और `12.30000000001` दो दशमलव स्थानों पर एक ही राशि हैं; दो बार आने वाली कुंजी `duplicate-key` के रूप में दर्ज होकर पूरी छोड़ दी जाती है, मनमाने ढंग से जोड़ी नहीं जाती — पहली मिलान जोड़ने से वही अंतर छिप जाता है जो मायने रखता है। शुद्ध ESM: कोई नेटवर्क अनुरोध नहीं, कोई मॉडल कॉल नहीं।
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-excel-reconcile-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-excel-reconcile-flow-v5-light.svg" width="100%" alt="dsh-excel-reconcile संरचना: A पक्ष की प्राप्य बही और B पक्ष का विवरण पत्र अनुबंध संख्या की कुंजी-रीढ़ (normaliseKey, join) पर मिलते हैं; मेल खाती पंक्तियाँ तुलना पट्टी में हर फ़ील्ड का निर्णय पाती हैं (ग्राहक / राशि / देय तिथि, सहनशीलता = abs + rel × max(|A|, |B|)), और बिना जोड़ी वाली कुंजियाँ सीधे missing-in-a/b बनती हैं; findings[] आठ प्रकारों की निश्चित सूची है जो markdown, resultJson और पाँच शीट वाली reconcile-diff.xlsx में बँटती है">
+</picture>
 
 ## तीन चरणों में शुरुआत
 
@@ -244,7 +249,7 @@ node samples/quickstart/run.mjs --check
 node ../scripts/sync-shared.mjs dsh-excel-reconcile
 ```
 
-यह रेपो benchmark डेटा प्रकाशित नहीं करता, इसलिए न «मापे गए डेटा» अनुभाग है न साक्ष्य चार्ट। README की छवियाँ [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) से प्रोग्रामेटिक रूप से बनती हैं: यह केवल `docs/assets/` में दो पाइपलाइन SVG लिखता है, सुरक्षित रूप से दोबारा चलाया जा सकता है, इसमें केवल कमांड टोकन होते हैं और पाँचों भाषाएँ इसे साझा करती हैं। टर्मिनल कैप्चर: [docs/assets/quickstart.png](docs/assets/quickstart.png) और [docs/assets/quickstart.log](docs/assets/quickstart.log)।
+यह रेपो benchmark डेटा प्रकाशित नहीं करता, इसलिए न «मापे गए डेटा» अनुभाग है न साक्ष्य चार्ट। README की छवियाँ [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) से प्रोग्रामेटिक रूप से बनती हैं: यह `docs/assets/` में चार बैनर (zh/en × हल्का/गहरा) और दो संरचनात्मक SVG लिखता है, सुरक्षित रूप से दोबारा चलाया जा सकता है, इसमें केवल कमांड टोकन, नमूने की कुंजियाँ और संक्षिप्त लेबल होते हैं, और दोनों संरचनात्मक चित्र पाँचों भाषाएँ साझा करती हैं। टर्मिनल कैप्चर: [docs/assets/quickstart.png](docs/assets/quickstart.png) और [docs/assets/quickstart.log](docs/assets/quickstart.log)।
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `deepseek`, `cordis`, `reconcile`, `excel`, `csv`, `diff`, `join`
 

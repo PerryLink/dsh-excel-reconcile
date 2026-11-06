@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="660" viewBox="0 0 1100 660" role="img" aria-labelledby="fig-title fig-desc">
+<title id="fig-title">dsh-excel-reconcile: two ledgers, one key spine, one verdict per field</title>
+<desc id="fig-desc">Side A (AR ledger) and side B (statement) meet at a key spine that normalises keys and applies a join mode. Every matched key is answered field by field in a verdict column — A value, verdict, B value — with compare[] tolerance shown on the field. Keys present on one side only bypass the comparison band and enter the finding taxonomy directly. Eight finding types, split by severity, then fan out to the three artefacts: markdown, resultJson and the five-sheet diff workbook.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0.36" y2="1">
+    <stop offset="0" stop-color="#f9f6fd"/>
+    <stop offset="1" stop-color="#e4eaf8"/>
+  </linearGradient>
+  <filter id="soft" x="-30%" y="-30%" width="160%" height="180%">
+    <feDropShadow dx="0" dy="8" stdDeviation="11" flood-color="#1b1735" flood-opacity="0.10"/>
+  </filter>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0 1.7 L9 5 L0 8.3 z" fill="#4B67B4"/>
+  </marker>
+  <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+    <circle cx="1.3" cy="1.3" r="1.3" fill="#d9d3ea"/>
+  </pattern>
+</defs>
+<rect width="1100" height="660" fill="url(#bg)"/>
+<rect width="1100" height="660" fill="url(#dots)" opacity=".42"/>
+<text x="44" y="60" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="34" font-weight="700">dsh-excel-reconcile</text>
+<text x="44" y="86" fill="#4d5261" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="15">two ledgers · one key spine · one verdict per field · three artefacts</text>
+<rect x="726" y="34" width="330" height="32" rx="16" fill="#ece7f9"/>
+<text x="891" y="55" fill="#4B67B4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5" text-anchor="middle">quickstart: 3 findings — 1 error · 2 warn</text>
+<line x1="44" y1="102" x2="1056" y2="102" stroke="#e7e4f0" stroke-width="1.5"/>
+<g filter="url(#soft)"><rect x="40" y="116" width="290" height="168" rx="20" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.5"/></g>
+<text x="60" y="144" fill="#4B67B4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14" letter-spacing="1.2">A · 应收台账</text>
+<text x="60" y="170" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="16" font-weight="700">ar-ledger-a.csv</text>
+<text x="60" y="194" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5">a.keys = 合同号 · 3 行</text>
+<line x1="60" y1="206" x2="310" y2="206" stroke="#e7e4f0" stroke-width="1.4"/>
+<text x="66" y="230" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5">HT-2026-001</text>
+<text x="310" y="230" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5" text-anchor="end">12000.00</text>
+<text x="66" y="252" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5" font-weight="700">HT-2026-002</text>
+<text x="310" y="252" fill="#b0470f" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5" text-anchor="end">8600.00</text>
+<text x="66" y="274" fill="#b0470f" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5">HT-2026-003</text>
+<text x="166" y="274" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11">only A</text>
+<text x="310" y="274" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5" text-anchor="end">5000.00</text>
+<g filter="url(#soft)"><rect x="770" y="116" width="290" height="168" rx="20" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.5"/></g>
+<text x="790" y="144" fill="#4B67B4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14" letter-spacing="1.2">B · 对账单</text>
+<text x="790" y="170" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="16" font-weight="700">ar-ledger-b.csv</text>
+<text x="790" y="194" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5">b.keys = 合同号 · 3 行</text>
+<line x1="790" y1="206" x2="1040" y2="206" stroke="#e7e4f0" stroke-width="1.4"/>
+<text x="796" y="230" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5">HT-2026-001</text>
+<text x="1040" y="230" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5" text-anchor="end">12000.00</text>
+<text x="796" y="252" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5" font-weight="700">HT-2026-002</text>
+<text x="1040" y="252" fill="#b0470f" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5" text-anchor="end">8500.00</text>
+<text x="796" y="274" fill="#b0470f" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5">HT-2026-004</text>
+<text x="896" y="274" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11">only B</text>
+<text x="1040" y="274" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5" text-anchor="end">3200.00</text>
+<g filter="url(#soft)"><rect x="372" y="116" width="356" height="168" rx="20" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.5"/></g>
+<text x="392" y="144" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="17" font-weight="700">excel_reconcile</text>
+<text x="392" y="166" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12">主键脊 · normaliseKey(NFKC · trim · upper)</text>
+<rect x="392" y="180" width="48" height="22" rx="11" fill="#4B67B4" stroke="#4B67B4" stroke-width="1.2"/><text x="416.0" y="195.0" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12" text-anchor="middle">full</text>
+<rect x="447" y="180" width="48" height="22" rx="11" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.2"/><text x="471.0" y="195.0" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12" text-anchor="middle">left</text>
+<rect x="502" y="180" width="55" height="22" rx="11" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.2"/><text x="529.5" y="195.0" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12" text-anchor="middle">inner</text>
+<rect x="564" y="180" width="55" height="22" rx="11" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.2"/><text x="591.5" y="195.0" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12" text-anchor="middle">right</text>
+<text x="392" y="230" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12.5">matched 2 · only A 1 · only B 1</text>
+<text x="392" y="252" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5">未匹配键绕过对照带 → missing-in-*</text>
+<text x="392" y="272" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5">config 随请求传入 · YAML / JSON</text>
+<path d="M330 200 H364" stroke="#4B67B4" stroke-width="2.2" marker-end="url(#arrow)" opacity=".8"/>
+<path d="M770 200 H736" stroke="#4B67B4" stroke-width="2.2" marker-end="url(#arrow)" opacity=".8"/>
+<line x1="550" y1="284" x2="550" y2="294" stroke="#4B67B4" stroke-width="2.6" opacity=".85"/>
+<g filter="url(#soft)"><rect x="40" y="294" width="1020" height="184" rx="20" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.5"/></g>
+<rect x="496" y="334" width="108" height="132" rx="14" fill="#4B67B4" opacity="0.05"/>
+<text x="64" y="320" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14" font-weight="700">对照带 · 每个匹配行逐字段判定</text>
+<text x="1036" y="320" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="12" text-anchor="end">容差 = abs + rel × max(|A|, |B|)</text>
+<line x1="64" y1="334" x2="1036" y2="334" stroke="#e7e4f0" stroke-width="1.4"/>
+<text x="64" y="356" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5">字段 · kind</text>
+<text x="490" y="356" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="end">A · 应收台账</text>
+<text x="550" y="356" fill="#4B67B4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">判定</text>
+<text x="610" y="356" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5">B · 对账单</text>
+<text x="1036" y="356" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="end">finding</text>
+<rect x="372" y="304" width="180" height="26" rx="13" fill="#ece7f9"/>
+<text x="462" y="321" fill="#4B67B4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">matched · HT-2026-002</text>
+<text x="64" y="386" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="15" font-weight="700">客户</text>
+<text x="150" y="385" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11">text</text>
+<text x="490" y="386" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14.5" text-anchor="end">乙公司</text>
+<rect x="502" y="368" width="96" height="25" rx="12" fill="#eef0f7" stroke="#e4e1ee" stroke-width="1.1"/>
+<text x="550" y="385" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">一致</text>
+<text x="610" y="386" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14.5">乙公司</text>
+<text x="1036" y="386" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="end">text · same</text>
+<rect x="56" y="394" width="988" height="30" rx="9" fill="#fdf0e7" opacity=".9"/>
+<rect x="56" y="394" width="4" height="30" rx="2" fill="#b0470f"/>
+<text x="64" y="416" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="15" font-weight="700">金额</text>
+<text x="150" y="415" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11">number · abs 0.01</text>
+<text x="490" y="416" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14.5" text-anchor="end">8600.00</text>
+<rect x="502" y="398" width="96" height="25" rx="12" fill="#fdf0e7" stroke="#b0470f" stroke-width="1.1"/>
+<text x="550" y="415" fill="#b0470f" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">Δ 100.00</text>
+<text x="610" y="416" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14.5">8500.00</text>
+<text x="1036" y="416" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="end">number-diff · error</text>
+<text x="64" y="446" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="15" font-weight="700">到期日</text>
+<text x="150" y="445" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11">date</text>
+<text x="490" y="446" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14.5" text-anchor="end">2026-12-15</text>
+<rect x="502" y="428" width="96" height="25" rx="12" fill="#eef0f7" stroke="#e4e1ee" stroke-width="1.1"/>
+<text x="550" y="445" fill="#4d5261" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">一致</text>
+<text x="610" y="446" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14.5">2026-12-15</text>
+<text x="1036" y="446" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="end">date · same</text>
+<text x="64" y="470" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5">对照带内的每一行只回答「两侧字面是否一致」；不判断哪一侧正确</text>
+<text x="64" y="504" fill="#141419" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14" font-weight="700">findings[]</text>
+<text x="64" y="524" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5">固定 8 种</text>
+<text x="176" y="504" fill="#b0470f" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" font-weight="700">error</text>
+<text x="176" y="532" fill="#4B67B4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" font-weight="700">warn</text>
+<rect x="222" y="488" width="96" height="22" rx="11" fill="#b0470f" stroke="#b0470f" stroke-width="1.2"/><text x="270.0" y="503.0" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">number-diff</text>
+<rect x="326" y="488" width="82" height="22" rx="11" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.2"/><text x="367.0" y="503.0" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">text-diff</text>
+<rect x="416" y="488" width="82" height="22" rx="11" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.2"/><text x="457.0" y="503.0" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">date-diff</text>
+<rect x="506" y="488" width="111" height="22" rx="11" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.2"/><text x="561.5" y="503.0" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">duplicate-key</text>
+<rect x="222" y="516" width="104" height="22" rx="11" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.2"/><text x="274.0" y="531.0" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">not-a-number</text>
+<rect x="334" y="516" width="82" height="22" rx="11" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.2"/><text x="375.0" y="531.0" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">empty-key</text>
+<rect x="424" y="516" width="104" height="22" rx="11" fill="#4B67B4" stroke="#4B67B4" stroke-width="1.2"/><text x="476.0" y="531.0" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">missing-in-a</text>
+<rect x="536" y="516" width="104" height="22" rx="11" fill="#4B67B4" stroke="#4B67B4" stroke-width="1.2"/><text x="588.0" y="531.0" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">missing-in-b</text>
+<text x="1036" y="504" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="end">severity 默认来自 compare[].severity</text>
+<text x="1036" y="524" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="end">join=left 时 missing-in-b 升为 error</text>
+<line x1="203" y1="546" x2="895" y2="546" stroke="#4B67B4" stroke-width="1.6" opacity=".6"/>
+<path d="M198 546 L208 546 L203 555 Z" fill="#4B67B4" opacity=".75"/>
+<path d="M544 546 L554 546 L549 555 Z" fill="#4B67B4" opacity=".75"/>
+<path d="M890 546 L900 546 L895 555 Z" fill="#4B67B4" opacity=".75"/>
+<g filter="url(#soft)"><rect x="40" y="558" width="326" height="72" rx="18" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.5"/></g>
+<text x="58" y="584" fill="#4B67B4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14.5" font-weight="700">markdown</text>
+<text x="58" y="604" fill="#4d5261" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="11.5">给人读 · 固定带「边界」段</text>
+<text x="58" y="622" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11">renderMarkdown()</text>
+<g filter="url(#soft)"><rect x="386" y="558" width="326" height="72" rx="18" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.5"/></g>
+<text x="404" y="584" fill="#4B67B4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14.5" font-weight="700">resultJson</text>
+<text x="404" y="604" fill="#4d5261" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="11.5">给程序用 · summary + findings[]</text>
+<text x="404" y="622" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11">buildView()</text>
+<g filter="url(#soft)"><rect x="732" y="558" width="326" height="72" rx="18" fill="#ffffff" stroke="#e4e1ee" stroke-width="1.5"/></g>
+<text x="750" y="584" fill="#4B67B4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="14.5" font-weight="700">reconcile-diff.xlsx</text>
+<text x="750" y="604" fill="#4d5261" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="11.5">5 张表 · 差异明细可筛选</text>
+<text x="750" y="622" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11">写盘失败仍返回 base64</text>
+<text x="44" y="646" fill="#8f94a4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace" font-size="11.5">money = BigInt minor units · duplicate keys rejected whole · inputs read-only · one write surface · no network · no model call</text>
+</svg>

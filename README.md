@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-excel-reconcile-flow-dark.svg">
-  <img src="docs/assets/dsh-excel-reconcile-flow-light.svg" width="100%" alt="dsh-excel-reconcile 数据流：fileA + fileB → excel_reconcile 工具 → findings[] → markdown / resultJson / reconcile-diff.xlsx；配置来自 config.yaml 的 join、compare[]、duplicates、scale">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-excel-reconcile-hero-zh-dark.webp">
+  <img src="docs/assets/dsh-excel-reconcile-hero-zh-light.webp" width="100%" alt="dsh-excel-reconcile 横幅：右侧是对开两页——A 侧应收台账与 B 侧对账单按合同号逐行对齐，中缝给每行一个判定（一致 / Δ 100.00 / 仅 A / 仅 B），下方把样例的 3 条 findings（1 error · 2 warn）接到 markdown、resultJson 与 reconcile-diff.xlsx；数字取自 samples/quickstart 样例">
 </picture>
 
 # dsh-excel-reconcile
@@ -37,6 +37,11 @@ dsh plugin --profile <name> add dsh-excel-reconcile
 `dsh-excel-reconcile` 把两份表格（`.xlsx` / `.xlsm` / `.csv` / `.docx` 表格）按配置的主键对齐，逐字段比较，输出三样东西：给人读的 Markdown 报告、给程序用的 JSON 结果、给经办人筛选的差异工作簿（5 张表）。每次调用只做一次对账：主键、比较字段、连接方式、容差都随请求的 YAML/JSON 配置传入，不随包发布固定规则。
 
 它对账，不裁决：出现差异说明两侧不一致，不说明哪一侧错了。金额按整数最小单位（BigInt）比较而非浮点，所以 `12.3` 与 `12.30000000001` 在两位小数下是同一笔；主键重复时报 `duplicate-key` 并整键跳过，不做任意配对——配第一条会把真正重要的差异藏起来。纯 ESM：无网络请求，无模型调用。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-excel-reconcile-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-excel-reconcile-flow-v5-light.svg" width="100%" alt="dsh-excel-reconcile 结构：A 侧应收台账与 B 侧对账单按合同号汇入主键脊（normaliseKey、join），匹配行进入对照带逐字段判定（客户 / 金额 / 到期日，容差 = abs + rel × max(|A|, |B|)），未匹配键直接成 missing-in-a/b；findings[] 固定 8 种类型，再分流到 markdown、resultJson 与 5 张表的 reconcile-diff.xlsx">
+</picture>
 
 ## 三步上手
 
@@ -244,7 +249,7 @@ node samples/quickstart/run.mjs --check
 node ../scripts/sync-shared.mjs dsh-excel-reconcile
 ```
 
-本仓不发布 benchmark 数据，因此没有「实测数据」章节，也不画证据图。配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Python + Pillow）：只输出 `docs/assets/dsh-excel-reconcile-flow-{light,dark}.svg` 两张流程图，可重复执行，图内只放命令 token，五语共用。终端记录见 [docs/assets/quickstart.png](docs/assets/quickstart.png) 与 [docs/assets/quickstart.log](docs/assets/quickstart.log)。
+本仓不发布 benchmark 数据，因此没有「实测数据」章节，也不画证据图。配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Python + Pillow）：输出 `docs/assets/dsh-excel-reconcile-hero-{zh,en}-{light,dark}.webp` 四张中英横幅与 `docs/assets/dsh-excel-reconcile-flow-v5-{light,dark}.svg` 两张结构图，可重复执行，图内只放命令 token、样例键与短标注，五语共用同一对结构图。终端记录见 [docs/assets/quickstart.png](docs/assets/quickstart.png) 与 [docs/assets/quickstart.log](docs/assets/quickstart.log)。
 
 Topics：`dsh`, `dsh-plugin`, `deepseek-harness`, `deepseek`, `cordis`, `reconcile`, `excel`, `csv`, `diff`, `join`
 

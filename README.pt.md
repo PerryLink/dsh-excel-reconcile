@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-excel-reconcile-flow-dark.svg">
-  <img src="docs/assets/dsh-excel-reconcile-flow-light.svg" width="100%" alt="Fluxo do dsh-excel-reconcile: fileA + fileB → ferramenta excel_reconcile → findings[] → markdown / resultJson / reconcile-diff.xlsx; a configuração vem de config.yaml (join, compare[], duplicates, scale)">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-excel-reconcile-hero-en-dark.webp">
+  <img src="docs/assets/dsh-excel-reconcile-hero-en-light.webp" width="100%" alt="Banner do dsh-excel-reconcile: à direita, uma folha dupla aberta — o razão de contas a receber (A) e o extrato do cliente (B) alinhados linha a linha pela chave de contrato, com um veredito por linha na medianiz (confere / Δ 100.00 / só A / só B), e abaixo as três diferenças do exemplo (1 error · 2 warn) que levam a markdown, resultJson e reconcile-diff.xlsx; os números vêm do exemplo em samples/quickstart">
 </picture>
 
 # dsh-excel-reconcile
@@ -37,6 +37,11 @@ dsh plugin --profile <name> add dsh-excel-reconcile
 O `dsh-excel-reconcile` alinha duas tabelas (`.xlsx` / `.xlsm` / `.csv` / tabelas `.docx`) pelas chaves configuradas, compara campo a campo e produz três artefatos: um relatório Markdown para pessoas, um resultado JSON para programas e uma pasta de trabalho de diferenças (cinco planilhas) para quem revisa. Cada chamada faz exatamente uma conciliação: chaves, campos comparados, modo de junção e tolerâncias viajam com a requisição como YAML/JSON; o pacote não traz um conjunto de regras fixo.
 
 Concilia, não julga: uma diferença significa que os dois lados não coincidem, não que um esteja errado. O dinheiro é comparado em unidades menores inteiras (BigInt), nunca em ponto flutuante, então `12.3` e `12.30000000001` são o mesmo valor com duas casas; uma chave que aparece duas vezes é reportada como `duplicate-key` e ignorada por inteiro em vez de emparelhada arbitrariamente, porque emparelhar a primeira ocorrência esconde a diferença que importa. ESM puro: sem requisições de rede e sem chamadas ao modelo.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-excel-reconcile-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-excel-reconcile-flow-v5-light.svg" width="100%" alt="Estrutura do dsh-excel-reconcile: o razão (A) e o extrato (B) entram numa espinha de chaves pelo número do contrato (normaliseKey, join); as linhas emparelhadas seguem para a faixa de comparação, com veredito campo a campo (cliente / valor / vencimento, tolerância = abs + rel × max(|A|, |B|)), e as chaves sem par viram missing-in-a/b; findings[] é um vocabulário fixo de oito tipos que se ramifica em markdown, resultJson e na pasta reconcile-diff.xlsx de cinco planilhas">
+</picture>
 
 ## Instalação em três passos
 
@@ -244,7 +249,7 @@ node samples/quickstart/run.mjs --check
 node ../scripts/sync-shared.mjs dsh-excel-reconcile
 ```
 
-Este repositório não publica dados de benchmark, então não há seção de dados medidos nem gráfico de evidência. As imagens do README são geradas programaticamente por [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow): ele grava apenas os dois SVG do pipeline em `docs/assets/`, pode ser reexecutado sem risco, contém somente tokens de comando e é compartilhado pelos cinco idiomas. Capturas de terminal: [docs/assets/quickstart.png](docs/assets/quickstart.png) e [docs/assets/quickstart.log](docs/assets/quickstart.log).
+Este repositório não publica dados de benchmark, então não há seção de dados medidos nem gráfico de evidência. As imagens do README são geradas programaticamente por [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow): ele grava os quatro banners (zh/en × claro/escuro) e os dois SVG estruturais em `docs/assets/`, pode ser reexecutado sem risco, contém somente tokens de comando, chaves do exemplo e rótulos curtos, e os dois estruturais são compartilhados pelos cinco idiomas. Capturas de terminal: [docs/assets/quickstart.png](docs/assets/quickstart.png) e [docs/assets/quickstart.log](docs/assets/quickstart.log).
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `deepseek`, `cordis`, `reconcile`, `excel`, `csv`, `diff`, `join`
 

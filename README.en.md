@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-excel-reconcile-flow-dark.svg">
-  <img src="docs/assets/dsh-excel-reconcile-flow-light.svg" width="100%" alt="dsh-excel-reconcile data flow: fileA + fileB → excel_reconcile tool → findings[] → markdown / resultJson / reconcile-diff.xlsx; configuration comes from config.yaml (join, compare[], duplicates, scale)">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-excel-reconcile-hero-en-dark.webp">
+  <img src="docs/assets/dsh-excel-reconcile-hero-en-light.webp" width="100%" alt="dsh-excel-reconcile banner: on the right, an open two-page spread — the A-side AR ledger and the B-side statement aligned row by row on the contract key, the gutter giving each row one verdict (match / Δ 100.00 / only A / only B), and below it the sample's three findings (1 error · 2 warn) leading to markdown, resultJson and reconcile-diff.xlsx; the figures come from the samples/quickstart fixture">
 </picture>
 
 # dsh-excel-reconcile
@@ -37,6 +37,11 @@ dsh plugin --profile <name> add dsh-excel-reconcile
 `dsh-excel-reconcile` aligns two tables (`.xlsx` / `.xlsm` / `.csv` / `.docx` tables) on the configured keys, compares field by field, and emits three artifacts: a Markdown report for people, a JSON result for programs, and a diff workbook (five sheets) for the reviewer. Each call performs exactly one reconciliation: keys, compared fields, join mode, and tolerances travel with the request as YAML/JSON — no fixed rule pack ships with the package.
 
 It reconciles; it does not adjudicate. A difference means the two sides disagree, not that either is wrong. Money is compared as integer minor units (BigInt), never floating point, so `12.3` and `12.30000000001` are the same amount at two decimal places; a key that appears twice is reported as `duplicate-key` and skipped whole rather than paired arbitrarily — pairing the first match hides the difference that matters. Pure ESM: no network requests, no model calls.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-excel-reconcile-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-excel-reconcile-flow-v5-light.svg" width="100%" alt="dsh-excel-reconcile structure: the A-side AR ledger and the B-side statement feed a key spine on the contract number (normaliseKey, join); matched rows enter the comparison band for a field-by-field verdict (customer / amount / due date, tolerance = abs + rel × max(|A|, |B|)), while unmatched keys become missing-in-a/b directly; findings[] is a fixed vocabulary of eight types that fans out to markdown, resultJson and the five-sheet reconcile-diff.xlsx">
+</picture>
 
 ## Three-step setup
 
@@ -244,7 +249,7 @@ node samples/quickstart/run.mjs --check
 node ../scripts/sync-shared.mjs dsh-excel-reconcile
 ```
 
-This repository publishes no benchmark data, so there is no measured-data section and no evidence chart. The README images are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow): it writes only the two pipeline SVGs under `docs/assets/`, is safe to re-run, keeps command tokens only, and is shared by all five languages. Terminal captures: [docs/assets/quickstart.png](docs/assets/quickstart.png) and [docs/assets/quickstart.log](docs/assets/quickstart.log).
+This repository publishes no benchmark data, so there is no measured-data section and no evidence chart. The README images are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow): it writes the four hero banners (zh/en × light/dark) and the two structural SVGs under `docs/assets/`, is safe to re-run, carries command tokens, fixture keys and short labels only, and the structural pair is shared by all five languages. Terminal captures: [docs/assets/quickstart.png](docs/assets/quickstart.png) and [docs/assets/quickstart.log](docs/assets/quickstart.log).
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `deepseek`, `cordis`, `reconcile`, `excel`, `csv`, `diff`, `join`
 
