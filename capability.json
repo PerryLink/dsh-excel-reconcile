@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "tier": "L2-document",
+  "input_formats": [
+    "xlsx",
+    "xlsm",
+    "csv",
+    "docx"
+  ],
+  "outputs": [
+    "markdown",
+    "json"
+  ],
+  "rules": {
+    "total": 0
+  },
+  "limits": [
+    "对账工具，无规则包",
+    "无真实对账语料 P/R"
+  ]
+}

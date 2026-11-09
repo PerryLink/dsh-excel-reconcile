@@ -25,7 +25,11 @@
     "icon.svg",
     "rules",
     "CHANGELOG.md",
-    "SECURITY.md"
+    "SECURITY.md",
+    "samples",
+    "TROUBLESHOOTING.md",
+    "screenshots.json",
+    "capability.json"
   ],
   "scripts": {
     "build": "tsdown",
@@ -42,6 +46,20 @@
     "manifestVersion": 1,
     "bundle": {
       "patch": "./cordis.patch.yml"
+    },
+    "demo": {
+      "sample": "samples/quickstart/input/ar-ledger-a.csv",
+      "prompt": "用自带样例对一次账，告诉我几处差异、分别是什么。",
+      "expect": "samples/quickstart/expected/result.json",
+      "screenshot": "docs/assets/quickstart.png",
+      "reads": [
+        "A 侧表格样本 samples/quickstart/input/ar-ledger-a.csv",
+        "B 侧表格样本 samples/quickstart/input/ar-ledger-b.csv",
+        "对账配置（YAML 文本）"
+      ],
+      "writes": [],
+      "network": false,
+      "external": []
     }
   },
   "keywords": [
