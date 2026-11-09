@@ -9,7 +9,7 @@
 import { describe, expect, it } from 'vitest'
 import { readWorkbook } from 'dsh-table-ingest/api'
 import { writeWorkbook } from '../src/xlsx-write.ts'
-import { reconcile, parseMinor, formatMinor, normaliseKey, ReconcileError, type ReconcileConfig } from '../src/model.ts'
+import { reconcile, reconcilePair, parseMinor, formatMinor, normaliseKey, ReconcileError, type ReconcileConfig } from '../src/model.ts'
 import { parseYaml } from '../src/shared/yaml.ts'
 import { buildWorkbook, DIFF_COLUMNS, renderMarkdown } from '../src/report.ts'
 
@@ -229,5 +229,25 @@ describe('yaml reader regression', () => {
     expect(diff).toBeDefined()
     expect(diff?.a).toBe('12000.00')
     expect(diff?.b).toBe('8000.00')
+  })
+})
+
+describe('same table name on both sides', () => {
+  it('does not let the B side overwrite the A side when both are named Sheet1', () => {
+    const a = tableOf('Sheet1', ACCOUNTS, [
+      ['HT-001', '甲公司', 1200.5, '2026-10-01'],
+      ['HT-002', '乙公司', 800, '2026-10-05'],
+    ]).table
+    const b = tableOf('Sheet1', LEDGER, [
+      ['HT-001', '甲公司', 1200.5, '2026-10-01'],
+      ['HT-002', '乙公司', 800.02, '2026-10-05'],
+    ]).table
+    const config: ReconcileConfig = {
+      ...CONFIG,
+      a: { table: 'Sheet1', keys: ['合同号'] },
+      b: { table: 'Sheet1', keys: ['合同号'] },
+    }
+    const result = reconcilePair(a, b, config)
+    expect(result.findings.some((finding) => finding.type === 'number-diff' && finding.key === 'HT-002')).toBe(true)
   })
 })

@@ -6,7 +6,7 @@ import { ingestToTable } from 'dsh-table-ingest/api'
 import { parseYaml } from './shared/yaml.ts'
 import { Config } from './config.ts'
 import type { Config as ConfigShape } from './config.ts'
-import { reconcile, ReconcileError, type ReconcileConfig } from './model.ts'
+import { reconcilePair, ReconcileError, type ReconcileConfig } from './model.ts'
 import { buildWorkbook, renderMarkdown } from './report.ts'
 import { buildView } from './view.ts'
 
@@ -28,7 +28,7 @@ export const TOOL_NAME = 'excel_reconcile'
  * @param name - the name the configuration refers to this side by.
  * @returns the parsed table, keyed by `name`.
  */
-async function readTable(path: string, name: string) {
+async function readTable(path: string) {
   const buffer = await readFile(path)
   const result = ingestToTable(buffer, path)
   if (!result.ok || result.table === undefined) {
@@ -37,7 +37,7 @@ async function readTable(path: string, name: string) {
         (result.candidates.length > 0 ? `（候选 ${result.candidates.length} 张，请改用 .xlsx 或指定表）` : ''),
     )
   }
-  return { [name]: result.table }
+  return result.table
 }
 
 /**
@@ -119,12 +119,12 @@ export function apply(ctx: Context, config: ConfigShape): () => void {
         }
 
         const [tableA, tableB] = await Promise.all([
-          readTable(pathA, reconcileConfig.a.table),
-          readTable(pathB, reconcileConfig.b.table),
+          readTable(pathA),
+          readTable(pathB),
         ])
         exec.signal.throwIfAborted()
 
-        const result = reconcile({ ...tableA, ...tableB }, reconcileConfig)
+        const result = reconcilePair(tableA, tableB, reconcileConfig)
         const markdown = renderMarkdown(result, reconcileConfig, { a: pathA, b: pathB })
         const workbook = buildWorkbook(result, reconcileConfig)
 

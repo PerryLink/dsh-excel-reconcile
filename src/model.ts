@@ -257,6 +257,24 @@ export function reconcile(tables: Record<string, TableJson>, config: ReconcileCo
   const right = tables[config.b.table]
   if (left === undefined) throw new ReconcileError(`找不到表「${config.a.table}」，实际有：${Object.keys(tables).join('、')}`)
   if (right === undefined) throw new ReconcileError(`找不到表「${config.b.table}」，实际有：${Object.keys(tables).join('、')}`)
+  return reconcilePair(left, right, config)
+}
+
+/**
+ * Reconcile two already-parsed tables, without looking them up by name.
+ *
+ * `reconcile` keys its inputs by the configuration's `a.table` / `b.table`
+ * names. When both sides are named `Sheet1`, that map keeps only the last
+ * table and the run silently compares B with B, reporting zero differences.
+ * Callers that read the two files themselves should use this entry point; it
+ * has no name collision to lose.
+ *
+ * @param left - A-side table.
+ * @param right - B-side table.
+ * @param config - join and comparison configuration.
+ * @returns findings, counters and rows for the workbook.
+ */
+export function reconcilePair(left: TableJson, right: TableJson, config: ReconcileConfig): ReconcileResult {
   if (config.a.keys.length !== config.b.keys.length) {
     throw new ReconcileError('两侧主键字段数量必须一致（按位置对应）')
   }
