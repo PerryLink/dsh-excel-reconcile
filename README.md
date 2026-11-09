@@ -1,6 +1,6 @@
 # dsh-excel-reconcile — Excel reconcile
 
-[English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+[English](README.md) · [简体中文](README-zh.md)
 
 <!-- topblock:v1 -->
 > **What it is** — Aligns two tables on a key and reports every field that differs.
