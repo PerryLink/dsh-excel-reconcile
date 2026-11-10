@@ -1,0 +1,21 @@
+{
+  "dataset": "SEC XBRL companyfacts: Apple FY2023 10-K vs FY2024 10-K comparative",
+  "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+  "license": "public domain (US federal work)",
+  "rows": 9,
+  "generatedAt": "2026-11-10T12:05:06.834Z",
+  "total": {
+    "tp": 9,
+    "fp": 0,
+    "fn": 0,
+    "tn": 9,
+    "precision": 1,
+    "recall": 1
+  },
+  "limitations": [
+    "The two sides are XBRL facts, not HTML table extraction.",
+    "This tests cross-filing consistency, not the correctness of the accounting.",
+    "Apple is one issuer; no industry-wide claim.",
+    "The mutation is synthetic; clean rows are real public facts."
+  ]
+}
