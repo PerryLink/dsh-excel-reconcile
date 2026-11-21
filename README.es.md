@@ -43,6 +43,11 @@ Concilia, no dictamina: una diferencia significa que los dos lados no coinciden,
   <img src="docs/assets/dsh-excel-reconcile-flow-v5-light.svg" width="100%" alt="Estructura de dsh-excel-reconcile: el libro mayor (A) y el estado de cuenta (B) entran en una columna vertebral de claves por número de contrato (normaliseKey, join); las filas emparejadas pasan a la banda de comparación para un dictamen campo a campo (cliente / importe / vencimiento, tolerancia = abs + rel × max(|A|, |B|)), y las claves sin pareja se registran directamente como missing-in-a/b; findings[] es un vocabulario fijo de ocho tipos que se reparte en markdown, resultJson y el libro reconcile-diff.xlsx de cinco hojas">
 </picture>
 
+![dsh-excel-reconcile: ejecución real de terminal](docs/assets/dsh-excel-reconcile-demo.gif)
+
+*Repetición animada de una ejecución real registrada en este repositorio.*
+
+
 ## Instalación en tres pasos
 
 1. **Instala**:

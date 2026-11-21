@@ -43,6 +43,11 @@ It reconciles; it does not adjudicate. A difference means the two sides disagree
   <img src="docs/assets/dsh-excel-reconcile-flow-v5-light.svg" width="100%" alt="dsh-excel-reconcile structure: the A-side AR ledger and the B-side statement feed a key spine on the contract number (normaliseKey, join); matched rows enter the comparison band for a field-by-field verdict (customer / amount / due date, tolerance = abs + rel × max(|A|, |B|)), while unmatched keys become missing-in-a/b directly; findings[] is a fixed vocabulary of eight types that fans out to markdown, resultJson and the five-sheet reconcile-diff.xlsx">
 </picture>
 
+![dsh-excel-reconcile: real terminal run](docs/assets/dsh-excel-reconcile-demo.gif)
+
+*Animated replay of a real run recorded in this repository.*
+
+
 ## Three-step setup
 
 1. **Install**:

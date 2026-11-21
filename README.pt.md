@@ -43,6 +43,11 @@ Concilia, não julga: uma diferença significa que os dois lados não coincidem,
   <img src="docs/assets/dsh-excel-reconcile-flow-v5-light.svg" width="100%" alt="Estrutura do dsh-excel-reconcile: o razão (A) e o extrato (B) entram numa espinha de chaves pelo número do contrato (normaliseKey, join); as linhas emparelhadas seguem para a faixa de comparação, com veredito campo a campo (cliente / valor / vencimento, tolerância = abs + rel × max(|A|, |B|)), e as chaves sem par viram missing-in-a/b; findings[] é um vocabulário fixo de oito tipos que se ramifica em markdown, resultJson e na pasta reconcile-diff.xlsx de cinco planilhas">
 </picture>
 
+![dsh-excel-reconcile: execução real de terminal](docs/assets/dsh-excel-reconcile-demo.gif)
+
+*Repetição animada de uma execução real registrada neste repositório.*
+
+
 ## Instalação em três passos
 
 1. **Instale**:

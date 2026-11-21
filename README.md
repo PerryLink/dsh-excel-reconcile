@@ -34,6 +34,10 @@ dsh plugin --profile <name> add dsh-excel-reconcile
 
 ## 它是什么
 
+![dsh-excel-reconcile 真实终端运行](docs/assets/dsh-excel-reconcile-demo.gif)
+
+*本仓库一次真实运行的动图回放。*
+
 `dsh-excel-reconcile` 把两份表格（`.xlsx` / `.xlsm` / `.csv` / `.docx` 表格）按配置的主键对齐，逐字段比较，输出三样东西：给人读的 Markdown 报告、给程序用的 JSON 结果、给经办人筛选的差异工作簿（5 张表）。每次调用只做一次对账：主键、比较字段、连接方式、容差都随请求的 YAML/JSON 配置传入，不随包发布固定规则。
 
 它对账，不裁决：出现差异说明两侧不一致，不说明哪一侧错了。金额按整数最小单位（BigInt）比较而非浮点，所以 `12.3` 与 `12.30000000001` 在两位小数下是同一笔；主键重复时报 `duplicate-key` 并整键跳过，不做任意配对——配第一条会把真正重要的差异藏起来。纯 ESM：无网络请求，无模型调用。

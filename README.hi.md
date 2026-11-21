@@ -43,6 +43,11 @@ dsh plugin --profile <name> add dsh-excel-reconcile
   <img src="docs/assets/dsh-excel-reconcile-flow-v5-light.svg" width="100%" alt="dsh-excel-reconcile संरचना: A पक्ष की प्राप्य बही और B पक्ष का विवरण पत्र अनुबंध संख्या की कुंजी-रीढ़ (normaliseKey, join) पर मिलते हैं; मेल खाती पंक्तियाँ तुलना पट्टी में हर फ़ील्ड का निर्णय पाती हैं (ग्राहक / राशि / देय तिथि, सहनशीलता = abs + rel × max(|A|, |B|)), और बिना जोड़ी वाली कुंजियाँ सीधे missing-in-a/b बनती हैं; findings[] आठ प्रकारों की निश्चित सूची है जो markdown, resultJson और पाँच शीट वाली reconcile-diff.xlsx में बँटती है">
 </picture>
 
+![dsh-excel-reconcile का असली टर्मिनल रन](docs/assets/dsh-excel-reconcile-demo.gif)
+
+*इस रिपॉज़िटरी में दर्ज असली रन का एनिमेटेड रीप्ले।*
+
+
 ## तीन चरणों में शुरुआत
 
 1. **इंस्टॉल करें**:
