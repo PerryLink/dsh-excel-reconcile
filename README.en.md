@@ -7,6 +7,8 @@
 
 # dsh-excel-reconcile
 
+Current version `0.1.7`.
+
 **Align two Excel/CSV tables on a key and get every field that disagrees — differences only, no verdict.**
 
 A reconciliation plugin for DeepSeek Harness: join two tables on declared keys, compare declared fields with declared tolerances, and emit a Markdown report, a JSON result, and a diff workbook; money is compared as integer minor units and a duplicated key is skipped whole instead of paired arbitrarily.
