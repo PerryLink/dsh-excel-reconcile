@@ -11,6 +11,8 @@
 
 Um plugin de conciliação para o DeepSeek Harness: une duas tabelas por chaves declaradas, compara campos declarados com tolerâncias declaradas e produz um relatório Markdown, um resultado JSON e uma pasta de trabalho de diferenças; o dinheiro é comparado em unidades menores inteiras e uma chave duplicada é ignorada por inteiro em vez de emparelhada arbitrariamente.
 
+Última verificação: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Instalar](#instalação-em-três-passos) · [Configuração](#configuração) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -46,7 +48,6 @@ Concilia, não julga: uma diferença significa que os dois lados não coincidem,
 ![dsh-excel-reconcile: execução real de terminal](docs/assets/dsh-excel-reconcile-demo.gif)
 
 *Repetição animada de uma execução real registrada neste repositório.*
-
 
 ## Instalação em três passos
 
